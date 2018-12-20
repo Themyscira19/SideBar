@@ -2,7 +2,7 @@ var db = require('../config');
 var Genre = require('./genre.js');
 
 var Movie = db.Model.extend({
-  tableName: 'movie',
+  tableName: 'movies',
   genre: function() {
     return this.belongsTo(Genre, 'genre_id');
   }

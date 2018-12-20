@@ -2,8 +2,6 @@ var knex = require('knex')({
     client: 'postgres',
     connection: {
       host: '127.0.0.1',
-      user: 'your_database_user',
-      password: '',
       database: 'fakeMovies'
     },
     pool: { min: 0, max: 7 }
@@ -45,6 +43,7 @@ var knex = require('knex')({
       db.knex.schema.createTable('genres', function (genre) {
         genre.increments('id').primary();
         genre.string('name', 50);
+        genre.integer('usable_id', 3);
       }).then(function (table) {
         console.log('Created Table', table);
       });
