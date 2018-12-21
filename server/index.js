@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
     res.json({ message: 'Welcome Justin\'s FEC API!' });
   });
   
-app.use(router);
+app.use('/api', router);
 
 
 
