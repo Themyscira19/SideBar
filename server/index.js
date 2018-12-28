@@ -1,26 +1,21 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var router = require('./router/routes');
+const express = require('express');
+const bodyParser = require('body-parser');
+const router = require('./router/routes');
+const path = require('path');
 
-var app = express();
+const app = express();
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '../client/dist'));
+app.use(express.static(path.join(__dirname, '../Client/dist/')));
 
-
-
-
+app.use(router);
 
 app.get('/', function (req, res) {
-    res.json({ message: 'Welcome Justin\'s FEC API!' });
+    res.json({ message: 'Welcome to Justin\'s FEC API!' });
   });
-  
-app.use('/api', router);
 
-
-
-var port = 9004;
+const port = process.env.PORT || 9004;
 
 app.listen(port, function () {
-  console.log('Justin\'s FEC compenent listening on port ' + port);
+  console.log('Justin\'s FEC component listening on port ' + port);
 });
