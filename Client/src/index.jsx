@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import CompareTab from "./components/CompareTab.jsx";
+import {Tabs, Tab} from 'react-bootstrap';
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class App extends React.Component {
     };
 
    this.switchTab = this.switchTab.bind(this);
+   this.switchMovie = this.switchMovie.bind(this);
   }
 
   componentDidMount() {
@@ -45,11 +47,17 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        
-        <CompareTab movies={this.state.movieData} currentMovie={this.state.currentMovie}/>
-      
-      </div>
+      <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
+      <Tab eventKey={1} title="Tab 1">
+        <CompareTab currentMovie={this.state.currentMovie} movies={this.state.movieData}/>
+      </Tab>
+      <Tab eventKey={2} title="Tab 2">
+        Tab 2 content
+      </Tab>
+      <Tab eventKey={3} title="Tab 3">
+        Tab 3 content
+      </Tab>
+    </Tabs>
     );
   }
 }
