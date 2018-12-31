@@ -8,7 +8,7 @@ router.route('/movies')
 router.route('/movies/:id')
     .get(controller.retrieveMovieById);
 
-router.route('/genres/')
+router.route('/genres')
     .get(controller.retrieveGenres);
 
 router.route('/genres/:genre_id')

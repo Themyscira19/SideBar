@@ -39,7 +39,6 @@ exports.retrieveMoviesByGenre = (req, res) => {
       for (var j = 0; j <= newArray.length; j++) {
           if (j === i) {
               newArray.push(numObj);
-              console.log(newArray)
               break;
           }
         var compareObj = newArray[j];
