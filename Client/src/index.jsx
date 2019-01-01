@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import CompareTab from "./components/CompareTab.jsx";
+import GenreTab from "./components/GenreTab.jsx";
+import RecommendTab from "./components/RecommendTab.jsx";
 import {Tabs, Tab} from 'react-bootstrap';
 
 class App extends React.Component {
@@ -12,7 +14,9 @@ class App extends React.Component {
       currentMovie: {title: "example", movieId: 100, release_date: "10/28/1927", fresh_votes: 50, rotten_votes: 50, genre_id: 15},
       topTen: [],
       genres: [],
-      currentGenre: 'Example-Genre'
+      currentGenre: 'Example-Genre',
+      genreTopTen: [],
+      recommended: []
     };
     axios.get('/movies')
       .then((response) => {
@@ -39,13 +43,6 @@ class App extends React.Component {
             var url = Number(document.URL.substring(document.URL.length - 3));
         // document.split('/')
             this.switchMovie(url);
-            this.state.genres.map((genreObj) => {
-              if (genreObj.id == this.state.currentMovie.genre_id) {
-                this.setState({
-                  currentGenre: genreObj.name
-                })
-              }
-            })
           })
         }) 
       })
@@ -77,7 +74,23 @@ class App extends React.Component {
               })
             }
           })
+          axios.get(`topTen/${this.state.currentMovie.genre_id}`)
+            .then((res) => {
+              this.setState({
+                genreTopTen: res.data
+              })
+            })
         })
+      })
+      var array = [];
+      for (var i = 0; i < 10; i++) {
+        var random = Math.floor(Math.random() * 100);
+        if (this.state.movieData[random]) {
+            array.push(this.state.movieData[random]);
+        }
+      }
+      this.setState({
+        recommended: array
       })
   }
 
@@ -88,10 +101,10 @@ class App extends React.Component {
         <CompareTab currentMovie={this.state.currentMovie} movies={this.state.movieData} topTen={this.state.topTen}/>
       </Tab>
       <Tab eventKey={2} title={`Top picks in ${this.state.currentGenre}:`}>
-        Tab 2 content
+      <GenreTab currentMovie={this.state.currentMovie} movies={this.state.movieData} topTen={this.state.genreTopTen}/>
       </Tab>
       <Tab eventKey={3} title={`Recommended:`}>
-        Tab 3 content
+        <RecommendTab currentMovie={this.state.currentMovie} ten={this.state.recommended}/>
       </Tab>
     </Tabs>
     );
