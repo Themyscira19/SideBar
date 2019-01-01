@@ -24,11 +24,11 @@ class App extends React.Component {
           movie.rating = movie.fresh_votes / (movie.fresh_votes + movie.rotten_votes);
           movie.rating = Math.floor(movie.rating * 100);
           if (movie.rating >= 75) {
-            movie.icon = ''
+            movie.icon = './images/certified_fresh.png'
           } else if (movie.rating >= 60) {
-            movie.icon = ''
+            movie.icon = './images/fresh.png'
           } else {
-            movie.icon = ''
+            movie.icon = './images/rotten.jpeg'
           }
         })
         this.setState({
@@ -41,7 +41,7 @@ class App extends React.Component {
             genres: resp.data
           }, () => {
             var url = Number(document.URL.substring(document.URL.length - 3));
-        // document.split('/')
+            // document.split('/')
             this.switchMovie(url);
           })
         }) 
@@ -64,6 +64,13 @@ class App extends React.Component {
         var movie = response.data;
         movie.rating = movie.fresh_votes / (movie.fresh_votes + movie.rotten_votes);
         movie.rating = Math.floor(movie.rating * 100);
+        if (movie.rating >= 75) {
+          movie.icon = './images/certified_fresh.png'
+        } else if (movie.rating >= 60) {
+          movie.icon = './images/fresh.png'
+        } else {
+          movie.icon = './images/rotten.jpeg'
+        }
         this.setState({
           currentMovie: movie
         }, () => {

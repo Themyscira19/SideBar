@@ -10,13 +10,13 @@ class RecommendTab extends React.Component {
 
   render() {
     return (
-      <Table striped condensed hover>
+      <Table condensed hover>
        
         <tbody>
         {this.props.ten.map((movie) => {
           return(
             <tr id={movie.movieId}>
-              <th> <a href={`?${movie.movieId}`}> image </a> </th>
+              <th>  <img src={`${movie.icon}`} width='16px' height='16px'/>   </th>
               <th> <a href={`?${movie.movieId}`}> {Math.floor(movie.rating)}% </a> </th>
               <th> <a href={`?${movie.movieId}`}> {movie.title} </a> </th>
               <th> <a href={`?${movie.movieId}`}> {movie.release_date} </a> </th>
