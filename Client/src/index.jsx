@@ -8,7 +8,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentView: "compareTab",
       movieData: [],
       currentMovie: {title: "example", movieId: 100, release_date: "10/28/1927", fresh_votes: 50, rotten_votes: 50, genre_id: 15},
       topTen: [],
@@ -32,17 +31,16 @@ class App extends React.Component {
         movieData: response.data,
         currentMovie: response.data[0]
       }, () => {
-        var url = Number(document.URL.substring(document.URL.length - 3));
-        // document.split('/')
-        this.switchMovie(url);
-      }, () => {
       axios.get('/genres')
         .then((resp) => {
           this.setState({
             genres: resp.data
           }, () => {
+            var url = Number(document.URL.substring(document.URL.length - 3));
+        // document.split('/')
+            this.switchMovie(url);
             this.state.genres.map((genreObj) => {
-              if (genreObj.usable_id = this.currentMovie.genre_id) {
+              if (genreObj.id == this.state.currentMovie.genre_id) {
                 this.setState({
                   currentGenre: genreObj.name
                 })
@@ -59,14 +57,7 @@ class App extends React.Component {
           })
         })
 
-   this.switchTab = this.switchTab.bind(this);
    this.switchMovie = this.switchMovie.bind(this);
-  }
-
-  switchTab (tabName) {
-    this.setState({
-      currentView: tabName
-    })
   }
 
   switchMovie (num) {
@@ -80,7 +71,7 @@ class App extends React.Component {
           currentMovie: movie
         }, () => {
           this.state.genres.map((genreObj) => {
-            if (genreObj.usable_id = this.currentMovie.genre_id) {
+            if (genreObj.id == this.state.currentMovie.genre_id) {
               this.setState({
                 currentGenre: genreObj.name
               })
