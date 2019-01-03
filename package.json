@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server",
     "dev-react": "webpack -d --watch",
-    "test": "jest"
+    "test": "jest",
+    "dev": "concurrently \"npm start\" \"npm run dev-react\""
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
+    "concurrently": "^4.1.0",
     "jest": "^23.6.0",
     "webpack": "^4.28.2",
     "webpack-cli": "^3.1.2"
