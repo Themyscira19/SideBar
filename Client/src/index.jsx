@@ -6,6 +6,7 @@ import GenreTab from "./components/GenreTab.jsx";
 import RecommendTab from "./components/RecommendTab.jsx";
 import {Tabs, Tab} from 'react-bootstrap';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +19,7 @@ class App extends React.Component {
       genreTopTen: [],
       recommended: []
     };
-    axios.get('/movies')
+    axios.get('http://localhost:9004/movies/')
       .then((response) => {
         response.data.map((movie) => {
           movie.rating = movie.fresh_votes / (movie.fresh_votes + movie.rotten_votes);
@@ -35,7 +36,7 @@ class App extends React.Component {
         movieData: response.data,
         currentMovie: response.data[0]
       }, () => {
-      axios.get('/genres')
+      axios.get('http://localhost:9004/genres/')
         .then((resp) => {
           this.setState({
             genres: resp.data
@@ -47,7 +48,7 @@ class App extends React.Component {
         }) 
       })
     })
-    axios.get('/topTen')
+    axios.get('http://localhost:9004/topTen/')
         .then((res) => {
           this.setState({
             topTen: res.data
@@ -59,7 +60,7 @@ class App extends React.Component {
 
   switchMovie (num) {
     num = num || 101;
-    axios.get(`/movies/${num}`)
+    axios.get(`http://localhost:9004/movies/${num}`)
       .then((response) => {
         var movie = response.data;
         movie.rating = movie.fresh_votes / (movie.fresh_votes + movie.rotten_votes);
@@ -81,7 +82,7 @@ class App extends React.Component {
               })
             }
           })
-          axios.get(`topTen/${this.state.currentMovie.genre_id}`)
+          axios.get(`http://localhost:9004/topTen/${this.state.currentMovie.genre_id}`)
             .then((res) => {
               this.setState({
                 genreTopTen: res.data
@@ -103,14 +104,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <Tabs defaultActiveKey={1}>
-      <Tab eventKey={1} title={`How ${this.state.currentMovie.title} stacks up:`}>
+      <Tabs id='tabs' defaultActiveKey={1}>
+      <Tab id='1' eventKey={1} title={`How ${this.state.currentMovie.title} stacks up:`}>
         <CompareTab currentMovie={this.state.currentMovie} movies={this.state.movieData} topTen={this.state.topTen}/>
       </Tab>
-      <Tab eventKey={2} title={`Top picks in ${this.state.currentGenre}:`}>
+      <Tab id='2' eventKey={2} title={`Top picks in ${this.state.currentGenre}:`}>
       <GenreTab currentMovie={this.state.currentMovie} movies={this.state.movieData} topTen={this.state.genreTopTen}/>
       </Tab>
-      <Tab eventKey={3} title={`Recommended:`}>
+      <Tab id='3' eventKey={3} title={`Recommended:`}>
         <RecommendTab currentMovie={this.state.currentMovie} ten={this.state.recommended}/>
       </Tab>
     </Tabs>
@@ -118,4 +119,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById("sidebar"));

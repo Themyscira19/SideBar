@@ -1,7 +1,7 @@
-var router = require('express').Router();
-var controller = require('./controller.js');
+const router = require('express').Router();
+const controller = require('./controller.js');
+const cors = require('cors');
 
-// Create route handlers for each of the six methods in pokemonController
 router.route('/movies')
     .get(controller.retrieveAllMovies);
 
