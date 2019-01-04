@@ -1,8 +1,8 @@
 var webpack = require('webpack');
 var path = require('path');
 
-var SRC_DIR = path.join(__dirname, '/client/src');
-var DIST_DIR = path.join(__dirname, '/client/dist');
+var SRC_DIR = path.join(__dirname, '/Client/src');
+var DIST_DIR = path.join(__dirname, '/Client/dist');
 
 module.exports = {
     entry: SRC_DIR + '/index.jsx',

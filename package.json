@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon server",
     "dev-react": "webpack -d --watch",
+    "build": "webpack -p",
     "test": "jest",
     "dev": "concurrently \"npm start\" \"npm run dev-react\""
   },

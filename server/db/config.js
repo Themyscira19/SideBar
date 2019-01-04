@@ -2,8 +2,8 @@ var knex = require("knex")({
   client: "postgres",
   connection: {
     host: "127.0.0.1",
-    user: "postgres",
-    password: process.env.PASSWORD,
+    user: process.env.PASSWORD ? "postgres" : '',
+    password: process.env.PASSWORD || '',
     database: "fakeMovies"
   },
   pool: { min: 0, max: 7 }
