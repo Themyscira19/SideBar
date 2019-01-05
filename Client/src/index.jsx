@@ -6,7 +6,7 @@ import GenreTab from "./components/GenreTab.jsx";
 import RecommendTab from "./components/RecommendTab.jsx";
 import {Tabs, Tab} from 'react-bootstrap';
 
-var API_URL = process.env.API_URL || 'http://localhost:9004';
+var API_URL = 'http://18.222.207.221:9004' || 'http://localhost:9004';
 
 var tabStyle = {
   fontWeight: 'strong',
