@@ -18,9 +18,9 @@ var allStyle = {
   fontWeight: 'strong',
   maxWidth: '350px',
   color: 'black',
-  'overflow-wrap': 'true',
-  'border-width': '1px',
-  'border-style': 'ridge'
+  overflowWrap: 'true',
+  borderWidth: '1px',
+  borderStyle: 'ridge'
 };
 
 class App extends React.Component {
@@ -120,7 +120,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Tabs id='tabs' defaultActiveKey={1} style={allStyle} generatechild='true'>
+      <Tabs id='tabs' defaultActiveKey={1} style={allStyle} generateChildId='true'>
       <Tab id='1' eventKey={1} title={'Compare:'} style={tabStyle}>
         <CompareTab currentMovie={this.state.currentMovie} movies={this.state.movieData} topTen={this.state.topTen}/>
       </Tab>

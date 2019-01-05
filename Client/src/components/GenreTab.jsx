@@ -4,10 +4,10 @@ import {Table} from "react-bootstrap";
 
 var lineStyle = {
   color: 'black',
-  'font-size': '14px',
-  'text-decoration': 'none',
-  'font-family': 'Franklin Gothic FS Book, sans-serif',
-  'border-top': '0px'
+  fontSize: '14px',
+  textDecoration: 'none',
+  fontFamily: 'Franklin Gothic FS Book, sans-serif',
+  borderTop: '0px'
 }
 
 class GenreTab extends React.Component {
