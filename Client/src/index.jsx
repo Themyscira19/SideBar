@@ -82,11 +82,11 @@ class App extends React.Component {
         movie.rating = movie.fresh_votes / (movie.fresh_votes + movie.rotten_votes);
         movie.rating = Math.floor(movie.rating * 100);
         if (movie.rating >= 75) {
-          movie.icon = './images/certified_fresh.png'
+          movie.icon = './sidebar/images/certified_fresh.png'
         } else if (movie.rating >= 60) {
-          movie.icon = './images/fresh.png'
+          movie.icon = './sidebar/images/fresh.png'
         } else {
-          movie.icon = './images/rotten.jpeg'
+          movie.icon = './sidebar/images/rotten.jpeg'
         }
         this.setState({
           currentMovie: movie
