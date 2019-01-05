@@ -2,32 +2,59 @@
     width: 10px
 } */
 
-th {
+/* th {
     max-width: '10px' !important
-}
+} */
 
-.Tab {
+/* .Tab {
     max-width: '50px' !important
-}
-
+} */
+/* 
 a {
     color: #343434;
   font-size: 14px;
   text-decoration: none;
-}
+} */
 
-.th {
+/* .th {
     max-width: '10px' !important;
     color: #343434;
     font-size: 14px;
     text-decoration: none;
-}
+} */
 
-TableHeaderColumn {
+/* .TableHeaderColumn {
+    font-weight: bold;
+    color: purple;
+} */
+
+#tabs-tab-2 {
     font-weight: bold;
     color: black;
 }
 
-a#tabs-tab-2 {
+/* .tabHeader {
     color: purple;
+} */
+
+/* #tabOne a {
+    color: purple;
+} */
+
+#tabs-tab-1 {
+    font-weight: bold;
+    color: black;
 }
+
+#tabs-tab-3 {
+    font-weight: bold;
+    color: black;
+}
+
+/* .active {
+    color: purple;
+} */
+/* 
+#tabs-tab-1 {
+    color: red
+} */

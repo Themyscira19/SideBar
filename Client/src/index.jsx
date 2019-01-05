@@ -9,18 +9,17 @@ import {Tabs, Tab} from 'react-bootstrap';
 // var 'http://18.222.207.221:9004' = 'http://18.222.207.221:9004' || 'http://localhost:9004';
 
 var tabStyle = {
-  fontWeight: 'strong',
-  maxWidth: '350px',
+  maxWidth: '375px',
   overflowWrap: 'true'
 };
 
 var allStyle = {
-  fontWeight: 'strong',
-  maxWidth: '350px',
+  fontWeight: 'normal',
+  maxWidth: '375px',
   color: 'black',
   overflowWrap: 'true',
   borderWidth: '1px',
-  borderStyle: 'ridge'
+  borderStyle: 'ridge',
 };
 
 class App extends React.Component {
@@ -121,11 +120,11 @@ class App extends React.Component {
   render() {
     return (
       <Tabs id='tabs' defaultActiveKey={1} style={allStyle} generateChildId='true'>
-      <Tab id='1' eventKey={1} title={'Compare:'} style={tabStyle}>
+      <Tab id='1' eventKey={1} title={'Compare:'} style={tabStyle} bsStyle='fuckreact'>
         <CompareTab currentMovie={this.state.currentMovie} movies={this.state.movieData} topTen={this.state.topTen}/>
       </Tab>
       <Tab id='2' eventKey={2} title={'In this genre:'} style={tabStyle}>
-      <GenreTab currentMovie={this.state.currentMovie} movies={this.state.movieData} topTen={this.state.genreTopTen} genre={this.state.currentGenre}/>
+        <GenreTab currentMovie={this.state.currentMovie} movies={this.state.movieData} topTen={this.state.genreTopTen} genre={this.state.currentGenre}/>
       </Tab>
       <Tab id='3' eventKey={3} title={`Recommended:`} style={tabStyle}>
         <RecommendTab currentMovie={this.state.currentMovie} ten={this.state.recommended}/>
