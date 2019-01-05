@@ -6,6 +6,22 @@ import GenreTab from "./components/GenreTab.jsx";
 import RecommendTab from "./components/RecommendTab.jsx";
 import {Tabs, Tab} from 'react-bootstrap';
 
+var API_URL = process.env.API_URL || 'http://localhost:9004';
+
+var tabStyle = {
+  fontWeight: 'strong',
+  maxWidth: '350px',
+  overflowWrap: 'true'
+};
+
+var allStyle = {
+  fontWeight: 'strong',
+  maxWidth: '350px',
+  color: 'black',
+  'overflow-wrap': 'true',
+  'border-width': '1px',
+  'border-style': 'ridge'
+};
 
 class App extends React.Component {
   constructor(props) {
@@ -19,7 +35,7 @@ class App extends React.Component {
       genreTopTen: [],
       recommended: []
     };
-    axios.get('http://localhost:9004/movies/')
+    axios.get(API_URL + '/movies/')
       .then((response) => {
         response.data.map((movie) => {
           movie.rating = movie.fresh_votes / (movie.fresh_votes + movie.rotten_votes);
@@ -36,7 +52,7 @@ class App extends React.Component {
         movieData: response.data,
         currentMovie: response.data[0]
       }, () => {
-      axios.get('http://localhost:9004/genres/')
+      axios.get(API_URL + '/genres/')
         .then((resp) => {
           this.setState({
             genres: resp.data
@@ -48,7 +64,7 @@ class App extends React.Component {
         }) 
       })
     })
-    axios.get('http://localhost:9004/topTen/')
+    axios.get(API_URL + '/topTen/')
         .then((res) => {
           this.setState({
             topTen: res.data
@@ -60,7 +76,7 @@ class App extends React.Component {
 
   switchMovie (num) {
     num = num || 101;
-    axios.get(`http://localhost:9004/movies/${num}`)
+    axios.get(API_URL + `/movies/${num}`)
       .then((response) => {
         var movie = response.data;
         movie.rating = movie.fresh_votes / (movie.fresh_votes + movie.rotten_votes);
@@ -82,7 +98,7 @@ class App extends React.Component {
               })
             }
           })
-          axios.get(`http://localhost:9004/topTen/${this.state.currentMovie.genre_id}`)
+          axios.get(API_URL + `/topTen/${this.state.currentMovie.genre_id}`)
             .then((res) => {
               this.setState({
                 genreTopTen: res.data
@@ -104,14 +120,14 @@ class App extends React.Component {
 
   render() {
     return (
-      <Tabs id='tabs' defaultActiveKey={1}>
-      <Tab id='1' eventKey={1} title={`How ${this.state.currentMovie.title} stacks up:`}>
+      <Tabs id='tabs' defaultActiveKey={1} style={allStyle} generatechild='true'>
+      <Tab id='1' eventKey={1} title={'Compare:'} style={tabStyle}>
         <CompareTab currentMovie={this.state.currentMovie} movies={this.state.movieData} topTen={this.state.topTen}/>
       </Tab>
-      <Tab id='2' eventKey={2} title={`Top picks in ${this.state.currentGenre}:`}>
-      <GenreTab currentMovie={this.state.currentMovie} movies={this.state.movieData} topTen={this.state.genreTopTen}/>
+      <Tab id='2' eventKey={2} title={'In this genre:'} style={tabStyle}>
+      <GenreTab currentMovie={this.state.currentMovie} movies={this.state.movieData} topTen={this.state.genreTopTen} genre={this.state.currentGenre}/>
       </Tab>
-      <Tab id='3' eventKey={3} title={`Recommended:`}>
+      <Tab id='3' eventKey={3} title={`Recommended:`} style={tabStyle}>
         <RecommendTab currentMovie={this.state.currentMovie} ten={this.state.recommended}/>
       </Tab>
     </Tabs>

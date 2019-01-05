@@ -5,3 +5,29 @@
 th {
     max-width: '10px' !important
 }
+
+.Tab {
+    max-width: '50px' !important
+}
+
+a {
+    color: #343434;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.th {
+    max-width: '10px' !important;
+    color: #343434;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+TableHeaderColumn {
+    font-weight: bold;
+    color: black;
+}
+
+a#tabs-tab-2 {
+    color: purple;
+}
