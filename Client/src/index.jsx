@@ -6,7 +6,7 @@ import GenreTab from "./components/GenreTab.jsx";
 import RecommendTab from "./components/RecommendTab.jsx";
 import {Tabs, Tab} from 'react-bootstrap';
 
-var API_URL = 'http://18.222.207.221:9004' || 'http://localhost:9004';
+// var 'http://18.222.207.221:9004' = 'http://18.222.207.221:9004' || 'http://localhost:9004';
 
 var tabStyle = {
   fontWeight: 'strong',
@@ -35,7 +35,7 @@ class App extends React.Component {
       genreTopTen: [],
       recommended: []
     };
-    axios.get(API_URL + '/movies/')
+    axios.get('http://18.222.207.221:9004/movies/')
       .then((response) => {
         response.data.map((movie) => {
           movie.rating = movie.fresh_votes / (movie.fresh_votes + movie.rotten_votes);
@@ -52,7 +52,7 @@ class App extends React.Component {
         movieData: response.data,
         currentMovie: response.data[0]
       }, () => {
-      axios.get(API_URL + '/genres/')
+      axios.get('http://18.222.207.221:9004/genres/')
         .then((resp) => {
           this.setState({
             genres: resp.data
@@ -64,7 +64,7 @@ class App extends React.Component {
         }) 
       })
     })
-    axios.get(API_URL + '/topTen/')
+    axios.get('http://18.222.207.221:9004/topTen/')
         .then((res) => {
           this.setState({
             topTen: res.data
@@ -76,7 +76,7 @@ class App extends React.Component {
 
   switchMovie (num) {
     num = num || 101;
-    axios.get(API_URL + `/movies/${num}`)
+    axios.get(`http://18.222.207.221:9004/movies/${num}`)
       .then((response) => {
         var movie = response.data;
         movie.rating = movie.fresh_votes / (movie.fresh_votes + movie.rotten_votes);
@@ -98,7 +98,7 @@ class App extends React.Component {
               })
             }
           })
-          axios.get(API_URL + `/topTen/${this.state.currentMovie.genre_id}`)
+          axios.get(`http://18.222.207.221:9004/topTen/${this.state.currentMovie.genre_id}`)
             .then((res) => {
               this.setState({
                 genreTopTen: res.data
