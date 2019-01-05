@@ -3,8 +3,11 @@ const bodyParser = require("body-parser");
 const router = require("./router/routes");
 const path = require("path");
 const cors = require("cors");
+const comp = require("compression");
 
 const app = express();
+
+app.use(comp());
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
