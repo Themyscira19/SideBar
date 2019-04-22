@@ -30,9 +30,7 @@ exports.retrieveMoviesByGenre = (req, res) => {
   var insertionSort = function(array) {
       var newArray = [];
     for (var i = 0; i < array.length; i++) {
-        // console.log(array[i].attributes)
       var numObj = array[i].attributes;
-    //   console.log(numObj)
       var fresh = numObj.fresh_votes;
         var rotten = numObj.rotten_votes;
         numObj.rating = fresh / (fresh + rotten);
@@ -93,8 +91,6 @@ exports.retrieveMoviesByGenre = (req, res) => {
         }
       });
   };
-
-
 
 exports.retrieveGenres = (req, res) => {
     Genre.where({})

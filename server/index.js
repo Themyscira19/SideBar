@@ -24,11 +24,6 @@ app.use(express.static(path.join(__dirname, "../Client/dist/")));
 
 app.use(router);
 
-// app.get('/', function (req, res) {
-//     console.log(req.header)
-//     res.sendFile(path.join(__dirname, '../Client/dist/bundle.js'))
-//   });
-
 const port = process.env.PORT || 9004;
 
 app.listen(port, function() {
